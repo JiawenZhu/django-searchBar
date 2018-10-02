@@ -1,0 +1,19 @@
+<html>
+  <header></header>
+  <body>
+    <form action="formSubmition" method="get">
+      <input width="500px" height="300" /><br>
+      {% for obj in objects %}
+      {{obj.title}}<br/>
+      {{obj.content}}<br/>
+      {{obj.timestamp}}<br/>
+      {{obj.updated}}<br/>
+      {% endfor %}
+      <h3>
+      </h3>
+    </form>
+
+  </body>
+  <footer></footer>
+</html>
+  
