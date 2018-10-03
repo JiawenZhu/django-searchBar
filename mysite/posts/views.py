@@ -7,13 +7,17 @@ import json
 
 def index(request):
     queryset = Post.objects.all()
-    context = {
-        "title": "Project list",
-        "objects": queryset
-    }
+    # can alsos display this data on index.html as well
+    # context = {
+    #     "title": "Project list",
+    #     "objects": queryset
+    # }
     serialized_queryse = serializers.serialize('json', queryset)
+    # creating json file
     with open('data.json', 'w') as outfile:
         json.dump(serialized_queryse, outfile)
+
+    # display data at http://127.0.0.1:8000/posts
     return HttpResponse(serialized_queryse, content_type='application/json')
 
 
