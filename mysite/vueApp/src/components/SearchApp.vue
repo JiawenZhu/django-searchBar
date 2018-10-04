@@ -1,6 +1,6 @@
 <template>
   <div id='SearchApp'>
-    <input type="text" v-model="search" placeholder="search a title"/>
+    <input type="text" v-model="search" placeholder="search a title, descritopn, price, summary or time"/>
     <div v-for="filter in filtered" :key="filter.id">
       <span>{{filter}}</span>
     </div>
@@ -24,10 +24,14 @@ export default {
   },
   computed: {
     filtered: function(){
+      const app = this;
         return this.filteredData.filter(function (product) {
-          return product.fields.title.match(app.this.search);
-          // return product.fields.title.match('water');
-          // return (product.fields.title.match('water') || product.fields.price.match('25'));
+            return (product.fields.title.match(app.search)       ||
+                    product.fields.description.match(app.search) ||
+                    product.fields.price.match(app.search)       ||
+                    product.fields.summary.match(app.search)     ||
+                    product.fields.timestamp.match(app.search)
+            );          
       });
     }
   }
