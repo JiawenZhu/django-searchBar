@@ -1,29 +1,35 @@
 <template>
   <div id='SearchApp'>
-    <input ref="search" type="text" v-model="search" placeholder="search a title"/>
-    <div v-for="x in data">
-      {{x}}
+    <input type="text" v-model="search" placeholder="search a title"/>
+    <div v-for="filter in filtered" :key="filter.id">
+      <span>{{filter}}</span>
     </div>
   </div>
 </template>
 
 <script>
 import json from '../../../data.json';
-const projects = JSON.parse(json);
-var search = '';
-
-var filteredData = projects.filter(function (project) {
-  return (project.fields.title.includes('water') && project.fields.price.includes(''));
-});
+const products = JSON.parse(json);
 
 export default {
   name: 'SearchApp',
-  data () {
-  
+  data () {  
     return {
-      data : filteredData,
+      filteredData : [],
+      search: ''
     }
-    
+  },
+  created(){
+    this.filteredData= products
+  },
+  computed: {
+    filtered: function(){
+        return this.filteredData.filter(function (product) {
+          return product.fields.title.match(app.this.search);
+          // return product.fields.title.match('water');
+          // return (product.fields.title.match('water') || product.fields.price.match('25'));
+      });
+    }
   }
 }
 
