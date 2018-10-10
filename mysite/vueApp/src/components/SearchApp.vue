@@ -2,13 +2,13 @@
   <div id='SearchApp'>
     <input type="text" v-model="search" placeholder="search a title, descritopn, price, summary or time"/>
     <div v-for="filter in filtered" :key="filter.id">
-      <span>{{filter}}</span>
+      <span class='project'>{{filter}}</span>
     </div>
   </div>
 </template>
 
 <script>
-import json from '../../../data.json';
+import json from '../../data.json';
 const products = JSON.parse(json);
 
 export default {
@@ -45,4 +45,12 @@ export default {
    width: 500px;
    height: 30px;
  }
+ .project{
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+  width: 20px;
+  max-width: 124px;
+  margin: 12px;
+  transition: .15s all ease-in-out;   
+ }
+
 </style>
