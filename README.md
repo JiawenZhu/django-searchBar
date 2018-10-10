@@ -1,1 +1,1 @@
-# django-searchBar
+# djangoVue-searchBar
